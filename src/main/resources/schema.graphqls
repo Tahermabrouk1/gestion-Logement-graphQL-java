@@ -1,0 +1,41 @@
+## methodes Query => Get en REST
+type Logement {
+    reference : Int
+    adresse :String
+    delegation : String
+    gouvernorat : String
+    description : String
+    prix : Float
+    typeL : TypeL
+}
+type RendezVous {
+    id : Int
+    date : String
+    heure : String
+    logement : Logement
+    numTel : String
+}
+
+enum TypeL {
+    Studio,
+    Appartement,
+    Villa,
+    EtageVilla
+}
+
+
+type QueryApi{
+getAllRdv : [RendezVous]
+getAllLog : [Logement]
+    logByRef( reference : Int) : Logement
+    getAllRdvByLog( ref : Int) : [RendezVous]
+}
+type MutationApi{
+    Addrdv( id : Int  , date : String  , heure :String  , refLog : Int  , num : String) : RendezVous
+}
+
+schema{
+    query: QueryApi
+    mutation: MutationApi
+}
+
